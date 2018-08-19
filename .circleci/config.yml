@@ -1,0 +1,36 @@
+version: 2
+
+jobs:
+  build_push:
+    docker:
+      - image: docker:18.02
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install packages
+          command: apk --no-cache add bash pcre-tools
+      - run:
+          name: Build docker images
+          command: |
+            ./build.sh
+      - run:
+          name: Run tests
+          command: |
+            ./test.sh
+      - run:
+          name: Push docker images
+          shell: /bin/bash -Eeuo pipefail
+          command: |
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+            for APP in $(./get_valid_order.sh); do
+              docker push jstriebel/$APP:${CIRCLE_BRANCH}__${CIRCLE_BUILD_NUM}
+              docker push jstriebel/$APP:${CIRCLE_BRANCH}
+            done
+            docker logout
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - build_push
