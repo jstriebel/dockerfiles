@@ -3,7 +3,7 @@
 
 The docker image provides a wine environment to install and run TMNF, it does not contain the game.
 
-To use the image, download the following files into a seperate directory:
+To use the image, download the following files into a separate directory:
 * [run.sh](https://raw.githubusercontent.com/jstriebel/dockerfiles/master/tmnf/run.sh)
 * [docker-compose.yaml](https://raw.githubusercontent.com/jstriebel/dockerfiles/master/tmnf/docker-compose.yaml)
 * [tmnationsforever_setup.exe](http://trackmaniaforever.com/nations/)
