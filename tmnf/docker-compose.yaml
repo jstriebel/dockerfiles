@@ -1,0 +1,25 @@
+version: '2.3'
+
+services:
+  tmnf:
+    image: jstriebel/tmnf:master
+    build: .
+    group_add:
+      - audio
+    environment:
+      - DISPLAY
+      - LANG
+      - TZ=${TZ:-Europe/Berlin}
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - ./data:/home/tmnf
+      - ./tmnationsforever_setup.exe:/tmp/tmnationsforever_setup.exe
+      - /tmp/.X11-unix
+      - /dev/shm
+    devices:
+      - /dev/dri/card0
+      - /dev/snd
+    cap_add:
+      - ALL
+    network_mode: host
