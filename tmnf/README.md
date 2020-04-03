@@ -24,6 +24,6 @@ chmod +x run.sh
 
 Then simply call `./run.sh` and follow the installation instructions.
 By running `./run.sh` again, you can start the game, or open the settings with `./run.sh -s`.
-Use ``./run.sh -h` to see all options.
+Use `./run.sh -h` to see all options.
 
 Your game settings and executables will be stored in the `data` directory, and are still available when re-building or re-pulling the image.
