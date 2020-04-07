@@ -77,6 +77,6 @@ mkdir -p data
 echo "In the next step the TMNF installation GUI should open."
 echo "You need to use the preset default installation directory."
 read -p "Press enter to continue …"
-docker-compose run --rm -w /tmp tmnf wine tmnationsforever_setup.exe
+docker-compose run --rm --user $(id -u):$(id -g) -w /tmp tmnf wine tmnationsforever_setup.exe
 
 echo -e "\e[32mInstallation succesfull! Run again to start game.\e[0m"
